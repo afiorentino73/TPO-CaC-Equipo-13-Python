@@ -1,0 +1,111 @@
+{% include 'header.html' %}
+
+<main>
+    <h1 class="texto1">Contacto</h1>
+
+
+ <div class="containerContacto">
+    
+  <div class="formRegister">
+       
+        <h3>Estamos para ayudarte a encontrar esa melodia que cambio tu vida. </h3>
+
+        <h3>Puede completar este formulario detallando su consulta  para brindarle un mejor asesoramiento.</h3>
+     
+     <!-- Datos del solicitante -->
+    
+     <form  id= 'formRegister' onsubmit="return validarFormulario();" class="formRegister">
+         <div>
+            <label for = "firstName"> Nombre: </label>
+            <input type="text" name="firstName" id="firstName"> 
+            <label class = "error" id = "error-firstName"> </label> 
+         </div>
+         <div>
+            <label for = "lastName"> Apellido: </label> 
+            <input type="text" name="lastName" id= "lastName">
+            <label class = "error" id = "error-lastName"> </label> 
+         </div>
+
+         <div>
+         <label for = "nroTelefono"> Número de Teléfono: </label> 
+         <input type="number" name="nroTelefono" id= "nroTelefono">
+         <label class = "error" id = "error-nroTelefono">  </label>
+         </div>
+
+         <div>
+             <label for = "localidad"> Localidad </label> 
+             <select name="localidad" id="localidad">
+             <option value="">Seleccionar Localidad</option>
+             <option value="CABA">Ciudad Autonoma de Bs AS</option>
+             <option value="PBA">Pcia de Buenos Aires</option>
+             <option value="OTR">Otras</option>
+             </select>
+             </div>
+
+            <div>
+         <label for = "email"> Correo electronico: </label> 
+         <input type="email" name="email" id="email" autocomplete="email">
+         <label class = "error" id = "error-email">  </label>
+         </div>
+         <!-- Detalle de la consulta --> 
+     
+         <h3>Selecciona el genero musical  </h3>
+
+            <!-- Para indicar genero musical -->    
+                
+            <select name="genMusical" id = "genMusical">
+                <option value=""> Estilo </option>
+                <option value="clasica">Clasica</option>
+                <option value="folk">Folclore</option>
+                <option value="instrumental">Instrumental</option>
+                <option value="rock">Rock</option>
+                <option value="latino">Latino</option>
+                <option value="otros">Otros</option>
+            </select> 
+     
+          <br><br>     
+          
+         <div>
+         <textarea name="tuConsulta" id="tuConsulta" cols="60" rows="5" placeholder="Ingrese su consulta..."></textarea>
+         </div>
+         <br>
+         <div>
+         <h3>Quiero recibir mi respuesta por:</h3> 
+       
+         <label for="byEmail">email</label>
+         <input type="checkbox" id="byEmail" name="byEmail"> 
+         <label for="byWhatsapp">Whatsapp</label>
+         <input type="checkbox" id="byWhatsapp" name="byWhatsapp"> 
+        
+         </div> 
+         <br>
+
+         <input type="submit" value="Enviar" class="botones">
+         <input type="reset" value="Borrar formulario" class="botones"> 
+        
+     </form>
+    </div> 
+        <div class="contacto">
+        <h3>Estos son nuestros datos de contacto</h3>
+        <br>
+        <ul>
+        <li><h3>Correo: xxxx@xxxx.com.ar</h3></li>
+         <br>
+        <li><h3>Tel: 011-444-4444</h3></li>
+        </ul>
+        </div>
+       <div class="redes">
+        <h3>Estos son nuestras redes</h3>
+        <br>
+        <ul>
+        <li><i class="fab fa-facebook-square"></i></li>
+        <li><i class="fab fa-instagram-square"></i></li>
+        <li><i class="fab fa-linkedin-in"></i></li>
+        </ul>
+       </div>
+ </div>
+<br>
+
+</main>
+
+{% include 'footer.html' %}

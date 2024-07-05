@@ -1,0 +1,18 @@
+{% include 'header.html' %}
+
+<div class="containerContacto">
+    <div class="formRegister">
+
+    <form method="post" action="/store" enctype="multipart/form-data">
+        Nombre:
+        <input type="text" name="txtNombre" id="txtNombre" /> <br />
+        Grupo:
+        <input type="text" name="txtGrupo" id="txtGrupo" /> <br />
+        Foto:
+        <input type="text" name="txtFoto" id="txtFoto" /> <br />
+        <input type="submit" value="Agregar Disco" />
+      </form>
+  </div>
+</div>
+
+{% include 'footer.html' %}
