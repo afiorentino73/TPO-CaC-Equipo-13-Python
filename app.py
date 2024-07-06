@@ -10,10 +10,10 @@ app = Flask(__name__)
 
 mysql = MySQL()
 
-app.config['MYSQL_HOST']='localhost'
-app.config['MYSQL_USER']='root'
-app.config['MYSQL_PASSWORD']=''
-app.config['MYSQL_DB']='test1'
+app.config['MYSQL_HOST']='afiorentino.mysql.pythonanywhere-services.com'
+app.config['MYSQL_USER']='afiorentino'
+app.config['MYSQL_PASSWORD']='tester13'
+app.config['MYSQL_DB']='afiorentino$test1'
 
 mysql.init_app(app)
 
@@ -34,21 +34,21 @@ def contacto():
 @app.route('/discos')
 def discos():
     sql = "SELECT * FROM discos"
-    
+
     conn = mysql.connection
-    cursor = conn.cursor()
-    cursor.execute(sql)
-   
-    db_discos = cursor.fetchall()
-    
+    cur = conn.cursor()
+    cur.execute(sql)
+
+    db_discos = cur.fetchall()
+
     #Print
     # print("-"*60)
     # for disco in db_discos:
     #    print(disco)
     #    print("-"*60)
-    
-    
-    cursor.close()
+
+
+    cur.close()
     return render_template('discos/discos.html', discos=db_discos)
 
 @app.route('/create')
@@ -61,32 +61,32 @@ def store():
     _nombre = request.form['txtNombre']
     _grupo = request.form['txtGrupo']
     _foto = request.form['txtFoto']
-    
+
     now = datetime.now()
     tiempo = now.strftime("%H%M%S")
-    
+
     if _foto !='':
         nuevoNombreFoto = tiempo+_foto
         #_foto.save("uploads/"+nuevoNombreFoto)
-    
+
     datos = (_nombre, _grupo,nuevoNombreFoto)
-    
+
     sql = "INSERT INTO `discos` (`Id`, `nombre`, `grupo`, `foto`)\
         VALUES (NULL, %s, %s, %s);"
-    
+
     #datos =  ('Clicks Modernos3', 'Charly Garcia', 'clicks_foto3.jpg')
-    
+
     conn = mysql.connection
-    
+
     cursor = conn.cursor()
-    
+
     cursor.execute(sql,datos)
-    
+
     conn.commit()
-    
+
     return redirect('/discos')
-    
-    
+
+
 #Lineas req by python
 
 if __name__=='__main__':
