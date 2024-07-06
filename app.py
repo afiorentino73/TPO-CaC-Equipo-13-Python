@@ -39,7 +39,6 @@ def discos():
     cur = conn.cursor()
     cur.execute(sql)
 
-
     db_discos = cur.fetchall()
 
     #Print
@@ -48,7 +47,7 @@ def discos():
     #    print(disco)
     #    print("-"*60)
 
-    cur.close()
+   cur.close()
     return render_template('discos/discos.html', discos=db_discos)
 
 @app.route('/create')
@@ -69,7 +68,7 @@ def store():
         nuevoNombreFoto = tiempo+_foto
         #_foto.save("uploads/"+nuevoNombreFoto)
 
-    datos = (_nombre, _grupo, nuevoNombreFoto)
+    datos = (_nombre, _grupo,nuevoNombreFoto)
 
     sql = "INSERT INTO `discos` (`Id`, `nombre`, `grupo`, `foto`)\
         VALUES (NULL, %s, %s, %s);"
@@ -134,8 +133,6 @@ def update():
         nuevoNombreFoto = _foto
         #_foto.save("uploads/"+nuevoNombreFoto)
 
-
-
     datos = (_nombre, _grupo, nuevoNombreFoto, _Id)
 
     sql = "UPDATE `discos` SET `nombre`=%s,`grupo`=%s,`foto`=%s WHERE `Id`=%s;"
@@ -154,7 +151,6 @@ def update():
 
     return redirect('/discos')
 
->>>>>>> Ajustado para python - base test1 - agregado delete update
 #Lineas req by python
 
 if __name__=='__main__':
