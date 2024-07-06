@@ -47,7 +47,8 @@ def discos():
     #    print(disco)
     #    print("-"*60)
 
-   cur.close()
+    cur.close()
+
     return render_template('discos/discos.html', discos=db_discos)
 
 @app.route('/create')
@@ -95,6 +96,7 @@ def destroy(del_id):
     cur = conn.cursor()
 
     #cur.execute(sql,id)
+
     cur.execute(sql,{del_id})
 
     conn.commit()
