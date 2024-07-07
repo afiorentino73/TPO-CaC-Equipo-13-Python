@@ -461,3 +461,31 @@ form {
         font-size: 20px;
         color: aliceblue;
       }
+
+/* Discos */
+  .formDiscos {
+        display grid;
+        margin: 30px;
+        min-width: 80%;
+        grid-column-start: 1;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        flex-direction: column;
+        /*width: 400px;*/
+        background: #24303c;
+        padding: 25px;
+        
+        margin-top: 10px;
+        border-radius: 4px;
+        font-family: 'calibri';
+        color: white;
+        box-shadow: 7px 13px 20px #000;
+
+      
+      }
+  .formDiscos th{
+        text-align: left;
+        font-size: 22px;
+        margin-bottom: 5px;
+  }
+
