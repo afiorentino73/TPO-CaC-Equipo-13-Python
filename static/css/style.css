@@ -464,12 +464,9 @@ form {
 
 /* Discos */
   .formDiscos {
-        display grid;
+        display: grid;
         margin: 30px;
         min-width: 80%;
-        grid-column-start: 1;
-        grid-row-start: 1;
-        grid-row-end: 3;
         flex-direction: column;
         /*width: 400px;*/
         background: #24303c;
