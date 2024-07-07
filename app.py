@@ -39,6 +39,7 @@ def discos():
     cur = conn.cursor()
     cur.execute(sql)
 
+
     db_discos = cur.fetchall()
 
     #Print
@@ -46,7 +47,6 @@ def discos():
     # for disco in db_discos:
     #    print(disco)
     #    print("-"*60)
-
 
     cur.close()
     return render_template('discos/discos.html', discos=db_discos)
@@ -69,7 +69,7 @@ def store():
         nuevoNombreFoto = tiempo+_foto
         #_foto.save("uploads/"+nuevoNombreFoto)
 
-    datos = (_nombre, _grupo,nuevoNombreFoto)
+    datos = (_nombre, _grupo, nuevoNombreFoto)
 
     sql = "INSERT INTO `discos` (`Id`, `nombre`, `grupo`, `foto`)\
         VALUES (NULL, %s, %s, %s);"
@@ -81,6 +81,23 @@ def store():
     cur = conn.cursor()
 
     cur.execute(sql,datos)
+
+    conn.commit()
+
+    return redirect('/discos')
+
+@app.route('/destroy/<int:del_id>')
+def destroy(del_id):
+    #id = int(regdel)
+    #id = int(id)
+    sql = "DELETE FROM `discos` WHERE Id = %s"
+
+    conn = mysql.connection
+
+    cur = conn.cursor()
+
+    #cur.execute(sql,id)
+    cur.execute(sql,{del_id})
 
     conn.commit()
 
