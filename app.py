@@ -88,27 +88,69 @@ def store():
     
 @app.route('/destroy/<int:del_id>')
 def destroy(del_id):
-    #id = int(regdel)
-    #id = int(id)
+
     sql = "DELETE FROM `discos` WHERE Id = %s"
     
     conn = mysql.connection
     
     cur = conn.cursor()
     
-    #cur.execute(sql,id)
     cur.execute(sql,{del_id})
     
     conn.commit()
     
     return redirect('/discos')
 
+@app.route('/edit/<int:upd_id>')
+def edit(upd_id):
 
+    sql = "SELECT * FROM `discos` WHERE Id = %s"
+    
+    conn = mysql.connection
+    
+    cur = conn.cursor()
+    
+    cur.execute(sql,{upd_id})
+    
+    upd_disco = cur.fetchall()
+    
+    cur.close()
+    
+    return render_template('/discos/edit.html', discos=upd_disco)
 
+@app.route('/update', methods=['POST'])
+def update():
 
-
+    _nombre = request.form['txtNombre']
+    _grupo = request.form['txtGrupo']
+    _foto = request.form['txtFoto']
+    _Id = request.form['txtId']
+    
+    now = datetime.now()
+    tiempo = now.strftime("%H%M%S")
+    
+    if _foto !='':
+        nuevoNombreFoto = tiempo+_foto
+        #_foto.save("uploads/"+nuevoNombreFoto)
+    
 
     
+    datos = (_nombre, _grupo, nuevoNombreFoto, _Id)
+    
+    sql = "UPDATE `discos` SET  nombre=%s, grupo=%s, foto=%s WHERE Id=%s)"
+    
+    #datos =  ('Clicks Modernos3', 'Charly Garcia', 'clicks_foto3.jpg')
+    
+    conn = mysql.connection
+    
+    cur = conn.cursor()
+    
+    cur.execute(sql,datos)
+    
+    conn.commit()
+    
+    return redirect('/discos')
+ 
 #Lineas req by python
 
 if __name__=='__main__':
