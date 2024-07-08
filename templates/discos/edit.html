@@ -1,0 +1,21 @@
+{% include 'header.html' %}
+
+  <div class="formDiscos">
+    <h4>Edicion de Disco</h4>
+    {% for disco in discos %}
+      <form method="post" action="/update" enctype="multipart/form-data">
+        Id:
+        <input type="text" value="{{disco[0]}}" name="txtId" id="txtId" /> <br>
+        Nombre:
+        <input type="text" value="{{disco[1]}}" name="txtNombre" id="txtNombre" /> <br>
+        Grupo:
+        <input type="text" value="{{disco[2]}}" name="txtGrupo" id="txtGrupo" /> <br>
+        Foto:
+        <input type="text" value="{{disco[3]}}" name="txtFoto" id="txtFoto" /> <br>
+        <input type="submit" value="Guardar Disco" />
+      </form>
+    {% endfor %}
+  </div>
+
+
+{% include 'footer.html' %}
