@@ -131,14 +131,14 @@ def update():
     tiempo = now.strftime("%H%M%S")
 
     if _foto !='':
-        nuevoNombreFoto = tiempo+_foto
+        nuevoNombreFoto = _foto
         #_foto.save("uploads/"+nuevoNombreFoto)
 
 
 
     datos = (_nombre, _grupo, nuevoNombreFoto, _Id)
 
-    sql = "UPDATE `discos` SET  nombre=%s, grupo=%s, foto=%s WHERE Id=%s)"
+    sql = "UPDATE `discos` SET `nombre`=%s,`grupo`=%s,`foto`=%s WHERE `Id`=%s;"
 
     #datos =  ('Clicks Modernos3', 'Charly Garcia', 'clicks_foto3.jpg')
 
@@ -149,6 +149,8 @@ def update():
     cur.execute(sql,datos)
 
     conn.commit()
+
+    cur.close()
 
     return redirect('/discos')
 
