@@ -27,12 +27,25 @@
             <td>{{disco[3]}}</td>
             <td>{{disco[1]}}</td>
             <td>{{disco[2]}}</td>
-            <td>Editar |<a href="/destroy/{{disco[0]}}">Borrar</a></td>
+            <td><a href="/edit/{{disco[0]}}">Editar</a>|<a href="/destroy/{{disco[0]}}">Borrar</a></td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
+  </div>
+
+  <div class="formDiscos">
+    <h4>Agregue un nuevo Disco</h4>
+    <form method="post" action="/store" enctype="multipart/form-data">
+        Nombre:
+        <input type="text" name="txtNombre" id="txtNombre" /> <br />
+        Grupo:
+        <input type="text" name="txtGrupo" id="txtGrupo" /> <br />
+        Foto:
+        <input type="text" name="txtFoto" id="txtFoto" /> <br />
+        <input type="submit" value="Agregar Disco" />
+      </form>
   </div>
 
   {% include 'footer.html' %}
