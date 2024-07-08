@@ -78,9 +78,9 @@ def store():
 
     conn = mysql.connection
 
-    cursor = conn.cursor()
+    cur = conn.cursor()
 
-    cursor.execute(sql,datos)
+    cur.execute(sql,datos)
 
     conn.commit()
 
