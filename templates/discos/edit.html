@@ -3,7 +3,7 @@
   <div class="formDiscos">
     <h4>Edicion de Disco</h4>
     {% for udisco in udiscos %}
-      <form method="post" action="/update" enctype="multipart/form-data">
+      <form class="formuDiscos" method="post" action="/update" enctype="multipart/form-data">
         Id:
         <input type="text" value="{{udisco[0]}}" name="txtId" id="txtId" /> <br>
         Nombre:

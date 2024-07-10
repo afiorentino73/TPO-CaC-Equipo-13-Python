@@ -464,27 +464,92 @@ form {
 
 /* Discos */
   .formDiscos {
-        display: flex;
-        align-items: stretch;
-        
+        display: grid;
+        align-items:center;
+        width: 50%;
            
         margin: 30px;
-        min-width: 90%;
+        min-width: 0%;
                /*width: 400px;*/
         background: #24303c;
-        padding: 25px;
+        padding: 15px;
         
         margin-top: 10px;
         border-radius: 4px;
         font-family: 'calibri';
         color: white;
         box-shadow: 7px 13px 20px #000;
-
       
       }
   .formDiscos th{
         text-align: left;
-        font-size: 22px;
+        font-size: 32px;
         margin-bottom: 5px;
+        padding: 10px;
+        border: #49846d;
   }
 
+  .formDiscos td{
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  .formDiscos td{
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .imgtr img:hover {
+    transform: scale(2.0,2.0);
+    transition: 3s;
+
+  }
+
+  .formuDiscos {
+    min-width: 60%;
+    display: grid;
+    align-items: stretch;
+    flex-direction: row;
+    /*width: 400px;*/
+    background: #24303c;
+    padding: 20px;
+    
+    margin: 10px auto;
+    border-radius: 4px;
+    font-family: 'calibri';
+    color: white;
+    box-shadow: 7px 13px 20px #000;
+   
+  }
+
+  .formDiscos tr:hover {
+    background-color: #105050;
+  }
+
+  .del-button {
+    background-color: #e11818;
+    border: none;
+    color: white;
+    padding: 4px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+  }
+  .edit-button {
+    background-color: #168fda;
+    border: none;
+    color: white;
+    padding: 4px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+  }
+
+  .containerDiscos {
+    display: flex;
+    /*grid-template-columns: 70% 1fr;
+    grid-template-rows:  50% 50%;*/
+    margin: 20px;
+   
+  }

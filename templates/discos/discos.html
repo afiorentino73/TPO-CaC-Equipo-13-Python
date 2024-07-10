@@ -10,10 +10,10 @@
   <br>
   <!--<div class="containerContacto"> 
   -->
-    
+  <div class="containerDiscos">
     <div class="formDiscos">
-      <table class="table table-light">
-        <thead class="thead-light">
+      <table >
+        <thead >
           <tr>
             <th>Foto</th>
             <th>Nombre</th>
@@ -24,10 +24,10 @@
         <tbody>
           {% for disco in discos %}
           <tr>
-            <td><img src="{{disco[3]}}" width=100 height=100></td>
+            <td class="imgtr"><img src="{{disco[3]}}" width=100 height=100></td>
             <td>{{disco[1]}}</td>
             <td>{{disco[2]}}</td>
-            <td><a href="/edit/{{disco[0]}}">Editar</a>|<a href="/destroy/{{disco[0]}} "onclick="return confirm('seguro de eliminar el registro?')">Borrar</a></td>
+            <td><a href="/edit/{{disco[0]}}"><button class=edit-button>Editar</button></a><a href="/destroy/{{disco[0]}} "onclick="return confirm('seguro de eliminar el registro?')"><button class=del-button>Borrar</button></a></td>
           </tr>
           {% endfor %}
         </tbody>
@@ -36,32 +36,33 @@
   </div>
 
   <div class="formDiscos">
-      <div>
-        <form method="post" action="/store" enctype="multipart/form-data">
+      <div >
+        <form class="formuDiscos" method="post" action="/store" enctype="multipart/form-data">
         <h4>Agregue un nuevo Disco</h4>
         <br>
-          Nombre:
-          <input type="text" name="txtNombre" id="txtNombre" /> <br />
-          Grupo:
-          <input type="text" name="txtGrupo" id="txtGrupo" /> <br />
+          Album:
+          <input type="text" name="txtNombre" id="txtNombre"> <br>
+          Artista/Grupo:
+          <input type="text" name="txtGrupo" id="txtGrupo"> <br>
           Foto:
-          <input type="text" name="txtFoto" id="txtFoto" /> <br />
+          <input type="text" name="txtFoto" id="txtFoto"> <br>
           <br>
-          <input type="submit" value="Agregar Disco" />
+          <input type="submit" value="Agregar Disco">
         </form>
       </div>
 
       <div>
-          <form method="post" action="/search" enctype="multipart/form-data">
+          <form class="formuDiscos" method="post" action="/search" enctype="multipart/form-data">
           <h4>Agregue un nuevo Disco desde una Busqueda</h4>
           <br>
-          Nombre:
-          <input type="text" name="stxtNombre" id="stxtNombre" /> <br />
-          Grupo:
-          <input type="text" name="stxtGrupo" id="stxtGrupo" /> <br />
+          Album:
+          <input type="text" name="stxtNombre" id="stxtNombre"> <br>
+          Artista/Grupo:
+          <input type="text" name="stxtGrupo" id="stxtGrupo"> <br>
           <br>
-          <input type="submit" value="Buscar Disco" />
+          <input type="submit" value="Buscar Disco">
         </form>
       </div>
     </div>
+  </div>
   {% include 'footer.html' %}
