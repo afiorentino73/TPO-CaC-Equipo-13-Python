@@ -1,5 +1,11 @@
+from __future__ import print_function
+from __future__ import unicode_literals
 from flask import Flask
 from flask import render_template, request, redirect
+
+import musicbrainzngs
+import sys
+
 from flask_mysqldb import MySQL
 
 #Importamos datetime
@@ -17,6 +23,35 @@ app.config['MYSQL_DB']='test1'
 
 mysql.init_app(app)
 
+#Api Musica validacion
+musicbrainzngs.set_useragent(
+    "python-musicbrainzngs-example",
+    "0.1",
+    "https://github.com/alastair/python-musicbrainzngs/",
+)
+
+#App Musica
+def show_release_details(artist,album):
+    
+    simage = []
+    result = musicbrainzngs.search_releases(artist=artist, release=album, type=['album'], status='official',limit=5)
+    
+    if not result['release-list']:
+        simage = ["Sin resultados"]
+    for rel in result['release-list']:
+        disk = rel['title']
+        artista = rel["artist-credit-phrase"]
+        data = musicbrainzngs.get_image_list(rel['id'])
+        if not data['images']:
+            foto=''
+        for image in data["images"]:
+            foto = image["thumbnails"]["small"]
+            break
+        sdisco = (disk,artista,foto)
+        simage.append(sdisco)
+    return(simage)
+    
+    
 #Rutas
 @app.route('/')
 def index():
@@ -40,7 +75,7 @@ def discos():
     cur.execute(sql)
    
     db_discos = cur.fetchall()
-    
+    #print(db_discos)
     #Print
     # print("-"*60)
     # for disco in db_discos:
@@ -116,7 +151,7 @@ def edit(upd_id):
     
     cur.close()
     
-    return render_template('/discos/edit.html', discos=upd_disco)
+    return render_template('/discos/edit.html', udiscos=upd_disco)
 
 @app.route('/update', methods=['POST'])
 def update():
@@ -152,6 +187,15 @@ def update():
     cur.close()
     
     return redirect('/discos')
+
+@app.route('/search', methods=['POST'])
+def search():
+   
+    album = request.form['stxtNombre']
+    artist = request.form['stxtGrupo']
+    rs_discos = show_release_details(album,artist)
+    
+    return render_template('/discos/search.html', sdiscos=rs_discos)
  
 #Lineas req by python
 

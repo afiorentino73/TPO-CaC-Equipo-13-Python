@@ -2,16 +2,16 @@
 
   <div class="formDiscos">
     <h4>Edicion de Disco</h4>
-    {% for disco in discos %}
+    {% for udisco in udiscos %}
       <form method="post" action="/update" enctype="multipart/form-data">
         Id:
-        <input type="text" value="{{disco[0]}}" name="txtId" id="txtId" /> <br>
+        <input type="text" value="{{udisco[0]}}" name="txtId" id="txtId" /> <br>
         Nombre:
-        <input type="text" value="{{disco[1]}}" name="txtNombre" id="txtNombre" /> <br>
+        <input type="text" value="{{udisco[1]}}" name="txtNombre" id="txtNombre" /> <br>
         Grupo:
-        <input type="text" value="{{disco[2]}}" name="txtGrupo" id="txtGrupo" /> <br>
+        <input type="text" value="{{udisco[2]}}" name="txtGrupo" id="txtGrupo" /> <br>
         Foto:
-        <input type="text" value="{{disco[3]}}" name="txtFoto" id="txtFoto" /> <br>
+        <input type="text" value="{{udisco[3]}}" name="txtFoto" id="txtFoto" /> <br>
         <input type="submit" value="Guardar Disco" />
       </form>
     {% endfor %}

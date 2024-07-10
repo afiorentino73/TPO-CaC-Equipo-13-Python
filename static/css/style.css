@@ -464,11 +464,13 @@ form {
 
 /* Discos */
   .formDiscos {
-        display: grid;
+        display: flex;
+        align-items: stretch;
+        
+           
         margin: 30px;
-        min-width: 80%;
-        flex-direction: column;
-        /*width: 400px;*/
+        min-width: 90%;
+               /*width: 400px;*/
         background: #24303c;
         padding: 25px;
         

@@ -6,7 +6,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
    -->  
   </head>
-  <h1 class="texto1">Tus Discos Top!!!</h1>
+  <h1 class="texto1">Discos Encontrados!!!</h1>
   <br>
   <!--<div class="containerContacto"> 
   -->
@@ -22,35 +22,20 @@
           </tr>
         </thead>
         <tbody>
-          {% for disco in discos %}
+          {% for sdisco in sdiscos %}
           <tr>
-            <td>{{disco[3]}}</td>
-            <td>{{disco[1]}}</td>
-            <td>{{disco[2]}}</td>
-            <td><a href="/edit/{{disco[0]}}">Editar</a>|<a href="/destroy/{{disco[0]}} "onclick="return confirm('seguro de eliminar el registro?')">Borrar</a></td>
+            <td><img src="{{sdisco[2]}}" width=50 height=50></td>
+            <td>{{sdisco[0]}}</td>
+            <td>{{sdisco[1]}}</td>
+            <td><a href="/edit/{{sdisco[0]}}">Editar</a>|<a href="/destroy/{{sdisco[0]}}">Borrar</a></td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
-  </div>
+  
 
-  <div class="formDiscos">
-      <div>
-        <form method="post" action="/store" enctype="multipart/form-data">
-        <h4>Agregue un nuevo Disco</h4>
-        <br>
-          Nombre:
-          <input type="text" name="txtNombre" id="txtNombre" /> <br />
-          Grupo:
-          <input type="text" name="txtGrupo" id="txtGrupo" /> <br />
-          Foto:
-          <input type="text" name="txtFoto" id="txtFoto" /> <br />
-          <br>
-          <input type="submit" value="Agregar Disco" />
-        </form>
-      </div>
-
+  
       <div>
           <form method="post" action="/search" enctype="multipart/form-data">
           <h4>Agregue un nuevo Disco desde una Busqueda</h4>
@@ -63,5 +48,5 @@
           <input type="submit" value="Buscar Disco" />
         </form>
       </div>
-    </div>
+    
   {% include 'footer.html' %}
