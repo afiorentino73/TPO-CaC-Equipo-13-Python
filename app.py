@@ -186,6 +186,7 @@ def edit(upd_id):
 @app.route('/addext/',methods=['GET'])
 def addext():
     
+    
     sdisco_nombre = request.args.get('sdisco_nombre')
     sdisco_grupo = request.args.get('sdisco_grupo')
     sdisco_foto = request.args.get('sdisco_foto')
