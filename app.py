@@ -36,20 +36,50 @@ def show_release_details(artist,album):
     simage = []
     result = musicbrainzngs.search_releases(artist=artist, release=album, type=['album'], status='official',limit=5)
     
-    if not result['release-list']:
-        simage = ["Sin resultados"]
-    for rel in result['release-list']:
-        disk = rel['title']
-        artista = rel["artist-credit-phrase"]
-        data = musicbrainzngs.get_image_list(rel['id'])
-        if not data['images']:
-            foto=''
-        for image in data["images"]:
-            foto = image["thumbnails"]["small"]
-            break
-        sdisco = (disk,artista,foto)
-        simage.append(sdisco)
-    return(simage)
+    if "release-list" in result:
+        for rel in result['release-list']:
+            if  int(rel['ext:score'])>=80:
+                #rel['status']=='Official' and
+                disk = rel['title']
+                artista = rel["artist-credit-phrase"]
+                #print(rel['id'],disco,artista)
+                try:
+                    data = musicbrainzngs.get_image_list(rel['id'])
+                    #if data.status_code!=404:
+                    if "images" in data:
+                        for image in data["images"]:
+                            if "Front" in image["types"] and image["approved"]:
+                                foto = image["thumbnails"]["small"]
+                    else:
+                        foto = ''
+                        #print("No foto")
+                    sdisco = (disk,artista,foto)
+                    simage.append(sdisco)
+                    #print(simage)
+                
+                except Exception as e:
+                    #Print("Error")
+                    sdisco=''
+                    #return
+            else:
+                foto=''
+                #print("No score")
+        return(simage)
+    
+    #if not result['release-list']:
+    #    simage = ["Sin resultados"]
+    #for rel in result['release-list']:
+    #    disk = rel['title']
+    #    artista = rel["artist-credit-phrase"]
+    #    data = musicbrainzngs.get_image_list(rel['id'])
+    #    if not data['images']:
+    #        foto=''
+    #    for image in data["images"]:
+    #        foto = image["thumbnails"]["small"]
+    #        break
+    #    sdisco = (disk,artista,foto)
+    #    simage.append(sdisco)
+    #return(simage)
     
     
 #Rutas
@@ -152,6 +182,30 @@ def edit(upd_id):
     cur.close()
     
     return render_template('/discos/edit.html', udiscos=upd_disco)
+
+@app.route('/addext/',methods=['GET'])
+def addext():
+    
+    sdisco_nombre = request.args.get('sdisco_nombre')
+    sdisco_grupo = request.args.get('sdisco_grupo')
+    sdisco_foto = request.args.get('sdisco_foto')
+
+    datosext = (sdisco_nombre, sdisco_grupo, sdisco_foto)
+
+    sql = "INSERT INTO `discos` (`Id`, `nombre`, `grupo`, `foto`)\
+        VALUES (NULL, %s, %s, %s);"
+    
+    #datos =  ('Clicks Modernos3', 'Charly Garcia', 'clicks_foto3.jpg')
+    
+    conn = mysql.connection
+    
+    cur = conn.cursor()
+    
+    cur.execute(sql,datosext)
+    
+    conn.commit()
+    
+    return redirect('/discos')
 
 @app.route('/update', methods=['POST'])
 def update():

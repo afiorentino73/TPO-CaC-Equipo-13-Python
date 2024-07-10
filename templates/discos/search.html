@@ -24,10 +24,10 @@
         <tbody>
           {% for sdisco in sdiscos %}
           <tr>
-            <td><img src="{{sdisco[2]}}" width=50 height=50></td>
+            <td><img src="{{sdisco[2]}}" width=100 height=100></td>
             <td>{{sdisco[0]}}</td>
             <td>{{sdisco[1]}}</td>
-            <td><a href="/edit/{{sdisco[0]}}">Editar</a>|<a href="/destroy/{{sdisco[0]}}">Borrar</a></td>
+            <td><a href="/addext/?sdisco_nombre={{sdisco[0]}}&sdisco_grupo={{sdisco[1]}}&sdisco_foto={{sdisco[2]}}">Agregar</a></td>
           </tr>
           {% endfor %}
         </tbody>
